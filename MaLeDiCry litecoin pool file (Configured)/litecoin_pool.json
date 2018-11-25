@@ -1,0 +1,102 @@
+﻿{
+    "logging": {
+        "level": "info",
+        "enableConsoleLog": true,
+        "enableConsoleColors": true,
+        "logFile": "pool_ltc.log",
+        "logBaseDirectory": "/miningcore/logs",
+        "perPoolLogFile": true
+    },
+    "banning": {
+        "manager": "integrated",
+        "banOnJunkReceive": true,
+        "banOnInvalidShares": false
+    },
+    "notifications": {
+        "enabled": false,
+        "email": {
+            "host": "smtp.example.com",
+            "port": 587,
+            "user": "user",
+            "password": "password",
+            "fromAddress": "info@yourpool.org",
+            "fromName": "support"
+        },
+        "admin": {
+            "enabled": true,
+            "emailAddress": "admin@gmail.com",
+            "notifyBlockFound": true
+        }
+    },
+    "persistence": {
+        "postgres": {
+            "host": "127.0.0.1",
+            "port": 5432,
+            "user": "miningcore",
+            "password": "Password-here",
+            "database": "DB-name-here"
+        }
+    },
+    "paymentProcessing": {
+        "enabled": true,
+        "interval": 600,
+        "shareRecoveryFile": "recovered-shares.txt"
+    },
+    "api": {
+	 "enabled": true,
+	 "listenAddress": "172.17.0.5",
+	 "port": 4000
+    },
+    "pools": [{
+      "id": "ltc1",
+      "enabled": true,
+      "coin": {
+        "type": "LTC"
+      },
+      "address": "LaBFtm9CTWnwBVsD8bv3gcY5GH384ee757",
+      "rewardRecipients": [
+        {
+          "address": "LaBFtm9CTWnwBVsD8bv3gcY5GH384ee757",
+          "percentage": 1.0
+        }
+      ],
+      "blockRefreshInterval": 500,
+      "jobRebroadcastTimeout": 10,
+      "clientConnectionTimeout": 600,
+      "banning": {
+        "enabled": true,
+        "time": 600,
+        "invalidPercent": 50,
+        "checkThreshold": 50
+      },
+      "ports": {
+        "3042": {
+          "listenAddress": "172.17.0.5",
+          "difficulty": 1024,
+          "name": "LTC-Mining",
+          "varDiff": {
+            "minDiff": 512,
+            "targetTime": 15,
+            "retargetTime": 90,
+            "variancePercent": 30
+          }
+        }
+      },
+      "daemons": [
+        {
+          "host": "172.17.0.2",
+          "port": 9332,
+          "user": "ltcmld",
+          "password": "ltcmld123"
+    }
+      ],
+      "paymentProcessing": {
+        "enabled": true,
+        "minimumPayment": 0.5,
+        "payoutScheme": "PPLNS",
+        "payoutSchemeConfig": {
+          "factor": 2.0
+        }
+      }
+    }]
+}
